@@ -55,7 +55,7 @@ class auth_plugin_authhttp extends DokuWiki_Auth_Plugin {
         /* Make sure that HTTP authentication has been enabled in the Web
            server. Note that does not seem to work with PHP >= 4.3.0 and safe
            mode enabled! */
-        if ($_SERVER['PHP_AUTH_USER'] == "") {
+        if (!array_key_exists('REMOTE_USER',$_SERVER) || $_SERVER['REMOTE_USER'] == "") {
             msg($this->getLang('nocreds'), -1);
             $this->success = false;
             return;
@@ -132,11 +132,7 @@ class auth_plugin_authhttp extends DokuWiki_Auth_Plugin {
      * @return string the cleaned user name
      */
     public function cleanUser($user) {
-        if (preg_match($this->usernameregex, $user, $results)) {
-            return $results[0];
-        } else {
-            return $user;
-        }
+        return $user;
     }
 }
 
