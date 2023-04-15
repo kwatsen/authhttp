@@ -29,6 +29,7 @@ if(!defined('DOKU_INC')) die();
 
 /* We have to distinguish between the plugin being loaded and the plugin
    actually being used for authentication. */
+global $conf;
 $active = (
     $conf['authtype'] == 'authhttp' ||
     (
@@ -47,7 +48,7 @@ class auth_plugin_authhttp extends DokuWiki_Auth_Plugin {
      * Constructor.
      */
     public function __construct() {
-        global $conf;
+        global $conf, $active;
 
         parent::__construct();
 
