@@ -115,9 +115,9 @@ class auth_plugin_authhttp extends DokuWiki_Auth_Plugin {
         $info['name'] = $user;
         $info['mail'] = $user."@".$this->emaildomain;
         $info['grps'] = array($conf['defaultgroup']);
-        if (in_array($user, $this->specialusers)) {
-            $info['grps'][] = $this->specialgroup;
-        }
+        //if (in_array($user, $this->specialusers)) {
+        //    $info['grps'][] = $this->specialgroup;
+        //}
 
         return $info;
     }
